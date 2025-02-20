@@ -1,0 +1,43 @@
+{% extends 'parent.html' %}
+{% block content_body %}
+    <img class='logo' src='{{ url_for("static", filename="icon.svg") }}'>
+    <h1>Djinn</h1>
+    {% if library_items %}
+        <div class='library_view'>
+            {% for item_id, game_info in library_items.items() %}
+                <span class='title'>
+                    <p>
+                        <img src='/image/{{ item_id }}'>
+                    </p>
+                    <p>
+                        <span>
+                            {{ game_info['title'] }}
+                        </span>
+                    </p>
+                    <p>
+                        Played for {{ '%.2f' % (game_info['time_played'] / 3600.0) }} hours
+                    </p>
+                    <p>
+                        Last played on {{ game_info['last_played_str'] }}
+                    </p>
+                    <p>
+                        Added on {{ game_info['time_added_str'] }}
+                    </p>
+                    <a href='/exec/{{ item_id }}' class='run_button'>
+                        {% if item_id in thread_items.keys() %}
+                            Stop
+                        {% else %}
+                            Run
+                        {% endif %}
+                    </a>
+                    <br>
+                </span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No items in library</p>
+    {% endif %}
+    <p>
+        <a href='/'>Refresh</a> / <a href='/info'>Info</a> / <a href='/add'>Add</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'parent.html' %}
+{% block content_body %}
+    <img class='logo' src='{{ url_for("static", filename="icon.svg") }}'>
+    <h1>Djinn Info</h1>
+    <p>Vladimir-sama's program launcher and manager</p>
+    <p>
+        <a href='/'>Library</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'parent.html' %}
+{% block content_body %}
+    <h1>Djinn Add</h1>
+    <p>Add an item to the library</p>
+    <form action='/add' method='POST' enctype='multipart/form-data'>
+        <p>
+            <label class='input_file_mask' style='width: 14ch; height: 4ch;' for='file_icon'>Icon File</label>
+            <input class='input_file' type='file' id='file_icon' accept='.jpg, .jpeg, .png, .gif, .webp, .svg' name='item_icon'>
+        </p>
+        <p><input type='text' maxlength='30' style='width: 30ch;' name='item_name' placeholder='(Title)' required></p>
+        <p><input type='text' maxlength='250' style='width: 70ch;' name='item_command' placeholder='(Command)' required></p>
+        <p>
+            <input type='checkbox' name='item_shell' id='is_shell'>
+            <label for='is_shell'>Is Shell</label>
+        </p>
+        <p>{{ message_errors }}</p>
+        <p>
+            <a href='/'>
+                <button type='button'>
+                    Cancel
+                </button>
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            <button type='submit'>
+                Confirm
+            </button>
+        </p>
+    </form>
+{% endblock %}
